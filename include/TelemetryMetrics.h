@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <cstdint>
+#include <atomic> //for thread safety
 
 class TelemetryMetrics {
 private:
-    uint64_t processedOrderCount; // BROKEN: Shared non-atomic integer
+    std::atomic<uint64_t> processedOrderCount; // BROKEN: fixed
 
 public:
     TelemetryMetrics();
